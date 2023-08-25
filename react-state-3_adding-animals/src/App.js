@@ -26,9 +26,10 @@ export default function App() {
   const [animals, setAnimals] = useState(initialAnimals);
 
   function handleAddAnimal(newAnimal) {
-    console.log(newAnimal);
-// adds new animal to the list ⬇️
-    setAnimals([...animals, { id: uid(), ...newAnimal }]);
+    // adds new animal to the list ⬇️
+    setAnimals([...animals, { ...newAnimal, id: uid() }]);
+    console.log(newAnimal); // nur das animal auslogen
+    console.log({ ...newAnimal, id: uid() }); // das animal UND die ID auslogen
   }
 
   return (
