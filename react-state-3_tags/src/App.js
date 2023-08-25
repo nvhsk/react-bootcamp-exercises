@@ -1,0 +1,19 @@
+import { useState } from "react";
+import "./styles.css";
+import Form from "./components/Form/Form.js";
+import List from "./components/List/List.js";
+
+export default function App() {
+  const [tags, setTags] = useState(["JavaScript", "React", "CSS", "HTML"]);
+
+  function handleAddTag(newTag) {
+    setTags([...tags, newTag]);
+  }
+
+  return (
+    <main className="app">
+      <Form onAddTag={handleAddTag} />
+      <List tags={tags} />
+    </main>
+  );
+}
