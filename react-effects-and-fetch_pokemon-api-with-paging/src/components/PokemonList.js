@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function PokemonList() {
-  const [pokemon, setPokemon] = useState({ results: [] });
+  const [pokemon, setPokemon] = useState();
   const [id, setId] = useState("https://pokeapi.co/api/v2/pokemon?offset=0");
 
   useEffect(() => {
@@ -9,7 +9,6 @@ export default function PokemonList() {
       try {
         const response = await fetch(id);
         const data = await response.json();
-        // setPokemon(data.results);
         setPokemon(data);
       } catch (error) {
         console.log(error);
@@ -18,6 +17,10 @@ export default function PokemonList() {
 
     loadPokemon();
   }, [id]);
+
+  if (!pokemon) {
+    return null;
+  }
 
   return (
     <main>
